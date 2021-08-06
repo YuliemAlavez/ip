@@ -10,4 +10,19 @@ class YdagIp
     puts res
     res
   end
+  def self.valid_multiple(ips)
+    res = ips
+    case ips.class.to_s
+    when 'String'
+      res = YdagIp.valid(ips)
+    when 'Array'
+      ips.each do |ip|
+        if YdagIp.valid(ip)=='Invalid address'
+          res='Invalid address'
+          break
+        end
+      end
+    end
+    res
+  end
 end
